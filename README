@@ -7,6 +7,9 @@
 
    OR update in development.yaml file
 
+
+
+==========================================
 Command Line
 ==========================================
 
@@ -20,9 +23,12 @@ d) Start server
 e) Test from browser
    http://localhost:8080/users
 
+
+
+==========================================
 IntelliJ IDE
 ==========================================
-
+1) Do a-c steps from above (We need migrations to be done)
 
 2) Open IntelliJ IDE and open pom.xml
   - It will take some time first time
@@ -31,12 +37,6 @@ IntelliJ IDE
   - Enable Annotation Processing in Preferences
 
 4) Build project
- 
 
+5) Run project
 
-Database
-===================
-
-1) We need a database with name "auto_talk"
-
-2) Run migrations

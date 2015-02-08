@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <sql-query name="user.findAll">
+        <return alias="product" class="com.mt.Core.product"/>
+        <![CDATA[SELECT id,pname,pdetail FROM product p]]>
+    </sql-query>
+</hibernate-mapping>

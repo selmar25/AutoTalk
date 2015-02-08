@@ -8,7 +8,8 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into user values (1, "kp", "prasad");
+insert into user values (1, "selva", "raj");
+insert into user values (2, "kp", "prasad");
 
 --rollback drop table user;
 
