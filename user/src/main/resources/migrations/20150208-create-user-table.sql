@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset nvoxland:1
+--changeset kvkrishnaprasad:1
 CREATE TABLE `user` (
   `id` int(11) NOT NULL DEFAULT '0',
   `first_name` varchar(100) DEFAULT NULL,

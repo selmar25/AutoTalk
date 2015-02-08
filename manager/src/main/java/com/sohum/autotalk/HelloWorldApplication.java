@@ -2,6 +2,8 @@ package com.sohum.autotalk;
 
 import com.sohum.autotalk.config.HelloWorldConfiguration;
 import com.sohum.autotalk.traffic.internal.TrafficResource;
+import com.sohum.autotalk.traffic.internal.UserLocationDAO;
+import com.sohum.autotalk.traffic.internal.model.UserLocation;
 import com.sohum.autotalk.user.internal.UserResource;
 import com.sohum.autotalk.user.internal.model.User;
 import com.sohum.autotalk.user.internal.repo.UserDAO;
@@ -18,7 +20,9 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
     new HelloWorldApplication().run(args);
   }
 
-  private final HibernateBundle<HelloWorldConfiguration> hibernate = new HibernateBundle<HelloWorldConfiguration>(User.class) {
+  private final HibernateBundle<HelloWorldConfiguration> hibernate = new HibernateBundle<HelloWorldConfiguration>(User.class,
+    UserLocation.class
+  ) {
     @Override
     public DataSourceFactory getDataSourceFactory(HelloWorldConfiguration configuration) {
       return configuration.getDataSourceFactory();
@@ -40,10 +44,10 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
   @Override
   public void run(HelloWorldConfiguration helloWorldConfiguration, Environment environment) throws Exception {
 
-
     final UserDAO dao = new UserDAO(hibernate.getSessionFactory());
+    final UserLocationDAO locationDAO = new UserLocationDAO(hibernate.getSessionFactory());
 
-    final TrafficResource resource = new TrafficResource(dao);
+    final TrafficResource resource = new TrafficResource(locationDAO);
     environment.jersey().register(resource);
 
     final UserResource userResource = new UserResource(dao);
