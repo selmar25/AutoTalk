@@ -8,6 +8,7 @@ import com.sohum.autotalk.user.internal.repo.UserDAO;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
+import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
@@ -27,6 +28,13 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
   @Override
   public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
     bootstrap.addBundle(hibernate);
+
+    bootstrap.addBundle(new MigrationsBundle<HelloWorldConfiguration>() {
+      @Override
+      public DataSourceFactory getDataSourceFactory(HelloWorldConfiguration configuration) {
+        return configuration.getDataSourceFactory();
+      }
+    });
   }
 
   @Override

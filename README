@@ -1,0 +1,42 @@
+
+1) If not done already, clone the git repo
+2) Create a MySql database with
+   name = auto_talk
+   user = root
+   password = <> (Empty)
+
+   OR update in development.yaml file
+
+Command Line
+==========================================
+
+a) mvn clean
+b) mvn package
+c) Run migrations
+   java -jar manager/target/manager-1.0-SNAPSHOT.jar db test  manager/src/main/resources/development.yaml
+d) Start server
+   java -jar manager/target/manager-1.0-SNAPSHOT.jar server manager/src/main/resources/development.yaml
+
+e) Test from browser
+   http://localhost:8080/users
+
+IntelliJ IDE
+==========================================
+
+
+2) Open IntelliJ IDE and open pom.xml
+  - It will take some time first time
+
+3) IntelliJ Settings
+  - Enable Annotation Processing in Preferences
+
+4) Build project
+ 
+
+
+Database
+===================
+
+1) We need a database with name "auto_talk"
+
+2) Run migrations
