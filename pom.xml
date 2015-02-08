@@ -40,6 +40,12 @@
       </dependency>
 
       <dependency>
+          <groupId>io.dropwizard</groupId>
+          <artifactId>dropwizard-hibernate</artifactId>
+          <version>0.7.1</version>
+      </dependency>
+
+      <dependency>
           <groupId>org.projectlombok</groupId>
           <artifactId>lombok</artifactId>
           <version>1.16.0</version>
@@ -51,6 +57,18 @@
           <version>4.3.0.Final</version>
       </dependency>
 
+      <dependency>
+          <groupId>javax.inject</groupId>
+          <artifactId>javax.inject</artifactId>
+          <version>1</version>
+      </dependency>
+
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.28</version>
+      </dependency>
+
   </dependencies>
 
 
@@ -58,6 +76,7 @@
         <module>common</module>
         <module>manager</module>
         <module>traffic</module>
+        <module>user</module>
     </modules>
 
 
