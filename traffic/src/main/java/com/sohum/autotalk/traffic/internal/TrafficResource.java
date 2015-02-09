@@ -29,7 +29,7 @@ public class TrafficResource implements ITrafficResouce {
   @Produces(MediaType.APPLICATION_JSON)
   public Boolean updatePosition(VehicleRequest request) {
     log.info("update " + request);
-    userLocationDAO.storeDetails(request.getUserId(), request.getLocation());
+    userLocationDAO.storeDetails(request.getUserId(), request.getLocation(), request.getEpochTime());
     return true;
   }
 

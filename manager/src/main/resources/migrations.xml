@@ -7,5 +7,6 @@
 
     <include file="migrations/20150208-create-user-table.sql" relativeToChangelogFile="true"/>
     <include file="migrations/20150208-create-user-location-table.sql" relativeToChangelogFile="true"/>
+    <include file="migrations/20150209-user-location-add-time-column.sql" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
