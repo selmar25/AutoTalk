@@ -1,6 +1,7 @@
 package com.sohum.autotalk;
 
 import com.sohum.autotalk.config.HelloWorldConfiguration;
+import com.sohum.autotalk.traffic.internal.NeighboursResource;
 import com.sohum.autotalk.traffic.internal.TrafficResource;
 import com.sohum.autotalk.traffic.internal.UserLocationDAO;
 import com.sohum.autotalk.traffic.internal.model.UserLocation;
@@ -52,5 +53,8 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
 
     final UserResource userResource = new UserResource(dao);
     environment.jersey().register(userResource);
+
+    final NeighboursResource neighboursResource = new NeighboursResource(locationDAO);
+    environment.jersey().register(neighboursResource);
   }
 }

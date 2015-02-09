@@ -1,5 +1,6 @@
 package com.sohum.autotalk.traffic.internal;
 
+import com.sohum.autotalk.common.GeoLocation;
 import com.sohum.autotalk.traffic.INeighbourResource;
 import com.sohum.autotalk.traffic.internal.model.UserLocation;
 import com.sohum.autotalk.traffic.response.NeighbhourResponse;
@@ -30,11 +31,17 @@ public class NeighboursResource implements INeighbourResource {
   @UnitOfWork
   @Produces(MediaType.APPLICATION_JSON)
   public NeighbhourResponse getNeighbours(@QueryParam("user_id") String userId) {
+    NeighbhourResponse response = new NeighbhourResponse();
     List<UserLocation> userLocationList = userLocationDAO.findAll();
 
     for (UserLocation userLocation : userLocationList) {
-      //
+      NeighbhourResponse.Neighbour neighbour = new NeighbhourResponse.Neighbour();
+
+      neighbour.setUserId(userLocation.getId());
+      neighbour.setLocation(new GeoLocation(userLocation.getLatitude(), userLocation.getLongitude()));
+
+      response.getUserList().add(neighbour);
     }
-    return null;
+    return response;
   }
 }
