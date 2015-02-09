@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -29,8 +30,9 @@ public class MessageResource implements IMessageResource {
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
   @Override
-  public void doBroadcast(MessageRequest request) {
+  public String doBroadcast(MessageRequest request) {
     // Find neighbours
     List<NeighbourResponse.Neighbour> neighbourList = neighbourResource.getNeighbours(request.getUserId()).getUserList();
 
@@ -41,5 +43,7 @@ public class MessageResource implements IMessageResource {
 
     // Send messages
     communicationResource.sendBulkMessage(userIdList, request.getMessage());
+
+    return "Send to " + userIdList.size() + " people";
   }
 }
