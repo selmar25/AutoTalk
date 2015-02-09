@@ -17,4 +17,10 @@ public class GeoLocation {
   public GeoLocation() {
 
   }
+
+  public double getDistance(GeoLocation secondPoint) {
+    double val = (secondPoint.latitude - latitude) * (secondPoint.getLatitude() - latitude);
+    val += (secondPoint.getLongitude() - longitude) * (secondPoint.getLongitude() - longitude);
+    return val;
+  }
 }

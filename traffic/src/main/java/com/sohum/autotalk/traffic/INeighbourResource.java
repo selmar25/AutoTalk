@@ -1,7 +1,7 @@
 package com.sohum.autotalk.traffic;
 
-import com.sohum.autotalk.traffic.response.NeighbhourResponse;
+import com.sohum.autotalk.traffic.response.NeighbourResponse;
 
 public interface INeighbourResource {
-  NeighbhourResponse getNeighbours(String userId);
+  NeighbourResponse getNeighbours(Integer userId);
 }

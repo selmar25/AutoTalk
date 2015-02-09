@@ -1,6 +1,10 @@
 package com.sohum.autotalk;
 
+import com.sohum.autotalk.communication.ICommunicationResource;
+import com.sohum.autotalk.communication.internal.CommunicationResource;
 import com.sohum.autotalk.config.HelloWorldConfiguration;
+import com.sohum.autotalk.messages.internal.MessageResource;
+import com.sohum.autotalk.traffic.internal.CurrentUserLocationMap;
 import com.sohum.autotalk.traffic.internal.NeighboursResource;
 import com.sohum.autotalk.traffic.internal.TrafficResource;
 import com.sohum.autotalk.traffic.internal.UserLocationDAO;
@@ -47,14 +51,20 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
 
     final UserDAO dao = new UserDAO(hibernate.getSessionFactory());
     final UserLocationDAO locationDAO = new UserLocationDAO(hibernate.getSessionFactory());
+    final CurrentUserLocationMap map = new CurrentUserLocationMap(helloWorldConfiguration.getNeighbourConfiguration());
 
-    final TrafficResource resource = new TrafficResource(locationDAO);
+    final TrafficResource resource = new TrafficResource(locationDAO, map);
     environment.jersey().register(resource);
 
     final UserResource userResource = new UserResource(dao);
     environment.jersey().register(userResource);
 
-    final NeighboursResource neighboursResource = new NeighboursResource(locationDAO);
+    final NeighboursResource neighboursResource = new NeighboursResource(locationDAO, map);
     environment.jersey().register(neighboursResource);
+
+    final ICommunicationResource communicationResource = new CommunicationResource();
+
+    final MessageResource messageResource = new MessageResource(neighboursResource, communicationResource);
+    environment.jersey().register(messageResource);
   }
 }

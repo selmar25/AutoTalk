@@ -9,13 +9,13 @@ import java.util.List;
 
 @Data
 @JsonSnakeCase
-public class NeighbhourResponse {
+public class NeighbourResponse {
   public List<Neighbour> userList = Lists.newArrayList();
 
   @Data
   @JsonSnakeCase
   public static class Neighbour {
-    private Long userId;
+    private Integer userId;
     private GeoLocation location;
   }
 }
